@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:tracing="http://www.mulesoft.org/schema/mule/tracing" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/tracing http://www.mulesoft.org/schema/mule/tracing/current/mule-tracing.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="1c0e4fa6-7542-40de-997a-a0f56aa2ca3e" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="correlationidFlow" doc:id="49e362d7-3cf9-4f6e-ac16-cebb73276490" >
+		<http:listener doc:name="Listener" doc:id="19aa9716-990a-4289-95f6-964460c39b8c" config-ref="HTTP_Listener_config" path="/corrid"/>
+		<set-variable value='#[output application/json&#10;---&#10;{&#10;	"x": uuid(),&#10;	"x1": uuid(),&#10;	"x2": uuid(),&#10;	"x3": uuid()&#10;}]' doc:name="Set Variable" doc:id="7a0348a3-ceb4-4585-ac36-2b67a7bdd254" variableName="corelationid"/>
+		<set-variable value="#[uuid()]" doc:name="Set Variable" doc:id="79cdeb03-cf23-49dc-83cf-c12a4cc1a79c" variableName="setTransactionId"/>
+		<set-payload value='#[output application/json&#10;---&#10;{&#10;	"A": "B",&#10;	"B": "C"&#10;}]' doc:name="Set Payload" doc:id="7bb6face-b2ba-4daf-ad2d-76b76a8c92ce" />
+		<logger level="INFO" doc:name="Logger" doc:id="adfb91e4-a09f-4b1a-9be0-4303b7582599" message='#["DDDDDDDDDDD"]'/>
+	</flow>
+</mule>
