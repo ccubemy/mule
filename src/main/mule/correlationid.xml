@@ -14,5 +14,6 @@ http://www.mulesoft.org/schema/mule/tracing http://www.mulesoft.org/schema/mule/
 		<set-variable value="#[uuid()]" doc:name="Set Variable" doc:id="79cdeb03-cf23-49dc-83cf-c12a4cc1a79c" variableName="setTransactionId"/>
 		<set-payload value='#[output application/json&#10;---&#10;{&#10;	"A": "B",&#10;	"B": "C"&#10;}]' doc:name="Set Payload" doc:id="7bb6face-b2ba-4daf-ad2d-76b76a8c92ce" />
 		<logger level="INFO" doc:name="Logger" doc:id="adfb91e4-a09f-4b1a-9be0-4303b7582599" message='#["DDDDDDDDDDD"]'/>
+		<logger level="INFO" doc:name="Logger2" doc:id="46fc0062-38f4-40a1-b7a1-22c3291ecf95" message='"DDDDDDDDDDDD"'/>
 	</flow>
 </mule>
